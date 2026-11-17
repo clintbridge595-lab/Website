@@ -2,18 +2,19 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import fs from 'fs';
 import path from 'path';
+import {fileURLToPath} from 'url';
 import {defineConfig} from 'vite';
+
+const ROOT_DIR = path.dirname(fileURLToPath(import.meta.url));
 
 function resolveBasePath(): string {
   if (process.env.VITE_BASE_PATH) {
     const raw = process.env.VITE_BASE_PATH.trim();
     return raw.endsWith('/') ? raw : `${raw}/`;
   }
-  if (process.env.GITHUB_ACTIONS === 'true' && process.env.GITHUB_REPOSITORY) {
-    const repoName = process.env.GITHUB_REPOSITORY.split('/')[1];
-    if (repoName) {
-      return `/${repoName}/`;
-    }
+  if (process.env.GITHUB_ACTIONS === 'true') {
+    const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1];
+    return repoName ? `/${repoName}/` : '/Website/';
   }
   return '/';
 }
@@ -27,13 +28,13 @@ export default defineConfig(() => {
       // Copies src/assets into dist/ and prepares GitHub Pages SPA fallback + clean asset bundle.
       {
         name: 'copy-unbundled-src-assets',
-        apply: 'build',
+        apply: 'build' as const,
         closeBundle(error?: Error): void {
           if (error) {
             return;
           }
-          const distDir = path.resolve(__dirname, 'dist');
-          const srcAssets = path.resolve(__dirname, 'src/assets');
+          const distDir = path.resolve(ROOT_DIR, 'dist');
+          const srcAssets = path.resolve(ROOT_DIR, 'src/assets');
           const distAssets = path.resolve(distDir, 'src/assets');
           if (fs.existsSync(distDir) && fs.existsSync(srcAssets)) {
             fs.cpSync(srcAssets, distAssets, {recursive: true, force: true});
@@ -60,7 +61,7 @@ export default defineConfig(() => {
     ],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': path.resolve(ROOT_DIR, '.'),
       },
     },
     server: {

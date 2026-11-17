@@ -1,4 +1,4 @@
-name: Deploy ROLL N ROLL to GitHub Pages
+name: Deploy Website to GitHub Pages
 
 on:
   push:
@@ -25,24 +25,20 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+          cache: "npm"
 
       - name: Install dependencies
-        run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          else
-            npm install
-          fi
+        run: npm ci
 
-      - name: Typecheck TypeScript
+      - name: Run TypeScript check
         run: npm run lint
 
-      - name: Build production bundle for GitHub Pages
+      - name: Build production website
         env:
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
         run: npm run build
 
-      - name: Verify build output
+      - name: Verify production build output
         run: |
           test -f dist/index.html
           test -f dist/404.html
