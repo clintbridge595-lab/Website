@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #050505;
+    color: #ffffff;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    margin: 0;
+    background-color: #050505;
+    color: #ffffff;
+    overflow-x: hidden;
+  }
+}
+
+.font-display {
+  font-family: 'Antonio', Impact, sans-serif;
+}
+
+.font-arabic {
+  font-family: 'Amiri', serif;
+}
+
+.font-mono-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Repeating charcoal fast-food doodle & RNR watermark pattern matching the reference backdrop */
+.bg-doodle-pattern {
+  background-color: #5e5e5e;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%23434343' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' opacity='0.65'%3E%3C!-- Burger Doodle --%3E%3Cg transform='translate(24,22) rotate(-12)'%3E%3Cpath d='M6 18 C6 8, 42 8, 42 18 Z'/%3E%3Cpath d='M4 22 Q12 19 24 22 T44 22'/%3E%3Crect x='5' y='25' width='38' height='6' rx='3'/%3E%3Cpath d='M7 33 L41 33 C41 39, 7 39, 7 33 Z'/%3E%3C/g%3E%3C!-- RNR Stamp --%3E%3Cg transform='translate(125,38) rotate(-20)'%3E%3Ctext x='0' y='16' fill='%23434343' stroke='none' font-family='Impact, sans-serif' font-size='18' font-weight='700' letter-spacing='1'%3ER.N.R%3C/text%3E%3C/g%3E%3C!-- Fries Doodle --%3E%3Cg transform='translate(160,112) rotate(14)'%3E%3Cpath d='M8 18 L12 42 L32 42 L36 18 Z'/%3E%3Cpath d='M12 18 L10 6 M18 18 L18 4 M24 18 L25 5 M30 18 L33 7'/%3E%3C/g%3E%3C!-- Drink Cup Doodle --%3E%3Cg transform='translate(30,130) rotate(10)'%3E%3Cpath d='M10 14 L14 44 L30 44 L34 14 Z'/%3E%3Cpath d='M7 14 L37 14 M22 14 L26 4 L32 4'/%3E%3C/g%3E%3C!-- Roll Wrap Doodle --%3E%3Cg transform='translate(98,162) rotate(-15)'%3E%3Crect x='4' y='10' width='40' height='16' rx='8'/%3E%3Cpath d='M14 10 L18 26 M26 10 L30 26'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 220px 220px;
+}
+
+/* Custom sleek dark scrollbar for horizontal category bar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Roll N Roll",
+  "description": "Roll N Roll — Pakistani Restaurant, Smash Burgers, Crispy Zinger Rolls, Pizza, Pasta & BBQ at Jamshed Road No. 3, Karachi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
